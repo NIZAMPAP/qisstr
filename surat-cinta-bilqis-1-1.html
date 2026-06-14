@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Untuk Bilqis 💌</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --rose:#C0495A; --blush:#E8A0A9; --petal:#F7D6DB;
+      --cream:#FDF5F0; --midnight:#1A0A0F; --plum:#4A1525;
+      --gold:#D4A843; --soft-gold:#F0D9A0;
+    }
+    html { scroll-behavior:smooth; }
+    body {
+      background:var(--midnight); color:var(--cream);
+      font-family:'Cormorant Garamond',serif;
+      overflow-x:hidden; cursor:none;
+    }
+    body.locked { overflow:hidden; }
+
+    /* ── CURSOR ── */
+    .cursor {
+      width:18px; height:18px; border:2px solid var(--rose);
+      border-radius:50%; position:fixed; top:0; left:0;
+      pointer-events:none; z-index:99999;
+      transform:translate(-50%,-50%);
+      transition:transform .15s ease,background .2s;
+    }
+    .cursor-dot {
+      width:5px; height:5px; background:var(--rose);
+      border-radius:50%; position:fixed; top:0; left:0;
+      pointer-events:none; z-index:99999;
+      transform:translate(-50%,-50%);
+    }
+
+    /* ════════════════════════════════════
+       ENVELOPE / OPENING SCREEN
+    ════════════════════════════════════ */
+    #envelope-screen {
+      position:fixed; inset:0; z-index:50000;
+      background:radial-gradient(ellipse 80% 80% at 50% 50%,#2a0a14,#0D0508);
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      transition:opacity 1s ease, visibility 1s;
+    }
+    #envelope-screen.gone { opacity:0; visibility:hidden; pointer-events:none; }
+
+    /* floating hearts bg */
+    #env-hearts {
+      position:absolute; inset:0; overflow:hidden; pointer-events:none;
+    }
+    .fh {
+      position:absolute; font-size:1.4rem; opacity:0;
+      animation:fhrise linear infinite;
+    }
+    @keyframes fhrise {
+      0%   { opacity:0; transform:translateY(0) scale(.6); }
+      15%  { opacity:.6; }
+      85%  { opacity:.4; }
+      100% { opacity:0; transform:translateY(-110vh) scale(1.2); }
+    }
+
+    .env-wrap {
+      position:relative; display:flex; flex-direction:column;
+      align-items:center; gap:2rem;
+    }
+
+    /* envelope SVG-style */
+    .envelope {
+      width:220px; height:160px; position:relative;
+      filter:drop-shadow(0 0 40px rgba(192,73,90,.7));
+      animation:env-float 3s ease-in-out infinite;
+    }
+    @keyframes env-float {
+      0%,100%{ transform:translateY(0) rotate(-1deg); }
+      50%    { transform:translateY(-12px) rotate(1deg); }
+    }
+    .env-body {
+      width:220px; height:160px; background:linear-gradient(160deg,#5a1a28,#3a0d18);
+      border-radius:8px; position:absolute; inset:0;
+      border:1.5px solid rgba(192,73,90,.5);
+      box-shadow:inset 0 0 30px rgba(0,0,0,.4);
+    }
+    .env-flap {
+      position:absolute; top:0; left:0; right:0;
+      height:0; border-left:110px solid transparent;
+      border-right:110px solid transparent;
+      border-top:80px solid #7a2035;
+      transform-origin:top center;
+      animation:flap-wave 3s ease-in-out infinite;
+    }
+    @keyframes flap-wave {
+      0%,100%{ transform:rotateX(0deg); }
+      50%    { transform:rotateX(8deg); }
+    }
+    .env-bottom {
+      position:absolute; bottom:0; left:0; right:0;
+      height:0; border-left:110px solid transparent;
+      border-right:110px solid transparent;
+      border-bottom:70px solid #4a1525;
+    }
+    .env-left {
+      position:absolute; top:0; bottom:0; left:0;
+      width:0; border-top:160px solid #6a1e30;
+      border-right:110px solid transparent;
+    }
+    .env-right {
+      position:absolute; top:0; bottom:0; right:0;
+      width:0; border-top:160px solid #5a1828;
+      border-left:110px solid transparent;
+    }
+    .env-seal {
+      position:absolute; top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      font-size:2.2rem; z-index:2;
+      animation:seal-pulse 1.5s ease-in-out infinite alternate;
+      filter:drop-shadow(0 0 12px rgba(192,73,90,.9));
+    }
+    @keyframes seal-pulse {
+      from{ transform:translate(-50%,-50%) scale(1); }
+      to  { transform:translate(-50%,-50%) scale(1.15); }
+    }
+
+    .env-title {
+      font-family:'Dancing Script',cursive;
+      font-size:clamp(1.4rem,5vw,2rem);
+      color:var(--blush); letter-spacing:.1em;
+      text-align:center; line-height:1.4;
+    }
+    .env-subtitle {
+      font-family:'Cormorant Garamond',serif;
+      font-size:1rem; color:rgba(232,160,169,.6);
+      letter-spacing:.15em; text-align:center;
+      margin-top:-.8rem;
+    }
+
+    /* OPEN BUTTON */
+    #open-btn {
+      position:relative; background:none; border:none;
+      cursor:none; outline:none; margin-top:.5rem;
+    }
+    .open-btn-ring {
+      position:absolute; inset:-6px; border-radius:50px;
+      background:conic-gradient(from 0deg,var(--rose),var(--gold),var(--blush),var(--rose));
+      animation:spin-ring 4s linear infinite;
+      border-radius:50px; padding:2px;
+      -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+      -webkit-mask-composite:destination-out; mask-composite:exclude;
+    }
+    @keyframes spin-ring{ to{ transform:rotate(360deg); } }
+    .open-btn-inner {
+      position:relative; z-index:1;
+      background:linear-gradient(135deg,#7a1a2e,#c0495a);
+      color:var(--cream); font-family:'Dancing Script',cursive;
+      font-size:1.4rem; letter-spacing:.08em;
+      padding:.85rem 2.8rem; border-radius:50px;
+      border:1.5px solid rgba(192,73,90,.6);
+      box-shadow:0 0 30px rgba(192,73,90,.5);
+      transition:transform .2s, box-shadow .2s;
+      display:flex; align-items:center; gap:.6rem;
+    }
+    #open-btn:hover .open-btn-inner {
+      transform:scale(1.05);
+      box-shadow:0 0 50px rgba(192,73,90,.8);
+    }
+    #open-btn:active .open-btn-inner { transform:scale(.97); }
+
+    .open-btn-ripple {
+      position:absolute; inset:0; border-radius:50px;
+      border:2px solid rgba(192,73,90,.6);
+      animation:ripple-out 2s ease-out infinite;
+    }
+    .open-btn-ripple:nth-child(2){ animation-delay:.7s; }
+    @keyframes ripple-out {
+      0%  { transform:scale(1); opacity:.8; }
+      100%{ transform:scale(1.6); opacity:0; }
+    }
+
+    /* ── LOADER ── */
+    #loader {
+      position:fixed; inset:0;
+      background:var(--midnight);
+      display:flex; align-items:center; justify-content:center;
+      flex-direction:column; z-index:10000;
+      transition:opacity .8s ease,visibility .8s;
+    }
+    #loader.hidden{ opacity:0; visibility:hidden; }
+    .loader-heart{ font-size:4rem; animation:heartbeat .8s infinite alternate; }
+    .loader-text{
+      font-family:'Dancing Script',cursive; font-size:1.4rem;
+      color:var(--blush); margin-top:1rem; letter-spacing:.1em;
+    }
+    @keyframes heartbeat{
+      from{ transform:scale(1); }
+      to  { transform:scale(1.3); filter:drop-shadow(0 0 20px #C0495A); }
+    }
+
+    /* ── MUSIC ── */
+    #music-player {
+      position:fixed; bottom:1.5rem; right:1.5rem; z-index:1000;
+      display:flex; align-items:center; gap:.5rem;
+      background:rgba(26,10,15,.85);
+      border:1px solid rgba(192,73,90,.4);
+      padding:.6rem 1rem; border-radius:50px;
+      backdrop-filter:blur(10px); transition:all .3s;
+    }
+    #music-player:hover{ border-color:var(--rose); }
+    .music-btn{
+      background:none; border:none; cursor:none;
+      color:var(--blush); font-size:1rem;
+      transition:color .2s,transform .2s;
+      padding:0 .1rem;
+    }
+    #music-toggle{ font-size:1.2rem; }
+    #music-prev{ font-size:.75rem; opacity:.7; }
+    #music-next{ font-size:.75rem; opacity:.7; }
+    .music-btn:hover{ color:var(--rose); transform:scale(1.2); }
+    .music-label{
+      font-family:'Cormorant Garamond',serif;
+      font-size:.78rem; color:var(--blush);
+      letter-spacing:.08em; white-space:nowrap;
+    }
+    .music-bars{ display:flex; gap:3px; align-items:flex-end; height:14px; }
+    .music-bar{
+      width:3px; background:var(--rose); border-radius:2px;
+      animation:bar-dance .8s ease-in-out infinite alternate;
+    }
+    .music-bar:nth-child(1){ height:8px;  animation-delay:0s; }
+    .music-bar:nth-child(2){ height:14px; animation-delay:.15s; }
+    .music-bar:nth-child(3){ height:6px;  animation-delay:.3s; }
+    .music-bar:nth-child(4){ height:12px; animation-delay:.1s; }
+    .music-bars.paused .music-bar{ animation-play-state:paused; }
+    @keyframes bar-dance{
+      from{ transform:scaleY(.4); }
+      to  { transform:scaleY(1);  }
+    }
+
+    /* ── PETALS ── */
+    #petals-container{
+      position:fixed; inset:0; pointer-events:none; z-index:1; overflow:hidden;
+    }
+    .petal{
+      position:absolute; top:-60px; width:12px; height:16px;
+      background:radial-gradient(ellipse at 40% 35%,#F7D6DB,#C0495A);
+      border-radius:150% 0 150% 0; opacity:0;
+      animation:fall linear infinite;
+    }
+    @keyframes fall{
+      0%  { opacity:0; transform:translateY(-60px) rotate(0deg) translateX(0); }
+      10% { opacity:.7; }
+      90% { opacity:.5; }
+      100%{ opacity:0; transform:translateY(110vh) rotate(720deg) translateX(80px); }
+    }
+
+    /* ── HERO ── */
+    #hero{
+      min-height:100vh; display:flex; align-items:center;
+      justify-content:center; flex-direction:column;
+      text-align:center; position:relative; padding:2rem;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 40%,rgba(74,21,37,.6) 0%,transparent 70%),
+        linear-gradient(180deg,#0D0508 0%,#1A0A0F 50%,#0D0508 100%);
+    }
+    .photo-frame-wrap{ position:relative; margin-bottom:2.5rem; width:200px; height:200px; }
+    .photo-ring{
+      position:absolute; inset:-12px; border-radius:50%;
+      border:2px solid transparent;
+      background:conic-gradient(from 0deg,var(--rose),var(--gold),var(--blush),var(--rose)) border-box;
+      -webkit-mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);
+      -webkit-mask-composite:destination-out; mask-composite:exclude;
+      animation:spin-ring 8s linear infinite;
+    }
+    .photo-frame{
+      width:200px; height:200px; border-radius:50%; overflow:hidden;
+      border:3px solid var(--rose);
+      box-shadow:0 0 40px rgba(192,73,90,.5),0 0 80px rgba(192,73,90,.2);
+      position:relative; z-index:1;
+    }
+    /*
+    ╔══════════════════════════════════════════════════════╗
+    ║  FOTO UTAMA — foto profil bulat di halaman pertama  ║
+    ╠══════════════════════════════════════════════════════╣
+    ║  CARA GANTI KE FOTO KAMU DARI GITHUB:               ║
+    ║  1. Buka GitHub → repo kamu → klik "Add file"       ║
+    ║     → "Upload files" → pilih foto → klik "Commit"   ║
+    ║  2. Klik nama file foto yang baru diupload           ║
+    ║  3. Klik tombol "Raw" (pojok kanan atas)             ║
+    ║  4. Copy URL dari address bar browser kamu           ║
+    ║  5. Paste URL itu menggantikan URL di baris src      ║
+    ║                                                      ║
+    ║  Contoh URL GitHub Raw yang benar:                   ║
+    ║  https://raw.githubusercontent.com/                  ║
+    ║    namakamu/nama-repo/main/foto-profil.jpg           ║
+    ╚══════════════════════════════════════════════════════╝
+    */
+    .photo-frame::before{
+      content:''; display:block; width:100%; height:100%;
+
+      /* GANTI URL INI dengan raw URL GitHub foto profil kamu */
+      /* Contoh: background-image:url('https://raw.githubusercontent.com/bilqis/surat/main/foto.jpg'); */
+      background-image:url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&q=80');
+
+      background-size:cover; background-position:center;
+    }
+    .hero-eyebrow{
+      font-family:'Dancing Script',cursive; font-size:1.1rem;
+      color:var(--gold); letter-spacing:.15em; margin-bottom:.5rem;
+      opacity:0; animation:fade-up 1s 1.2s forwards;
+    }
+    .hero-title{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(3rem,10vw,7rem);
+      font-style:italic; font-weight:700; line-height:1.05;
+      background:linear-gradient(135deg,var(--cream) 0%,var(--soft-gold) 40%,var(--blush) 80%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text;
+      opacity:0; animation:fade-up 1s 1.4s forwards;
+    }
+    .hero-subtitle{
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.1rem; font-style:italic;
+      color:var(--blush); margin-top:1rem; letter-spacing:.08em;
+      opacity:0; animation:fade-up 1s 1.6s forwards;
+    }
+    .hero-divider{
+      margin:2rem auto; width:120px; height:1px;
+      background:linear-gradient(90deg,transparent,var(--rose),transparent);
+      opacity:0; animation:fade-up 1s 1.8s forwards;
+    }
+    .scroll-hint{
+      position:absolute; bottom:2rem;
+      font-family:'Cormorant Garamond',serif;
+      font-size:.8rem; color:var(--blush);
+      letter-spacing:.2em; text-transform:uppercase;
+      opacity:0; animation:fade-up 1s 2.5s forwards,bob 2s 3.5s ease-in-out infinite;
+    }
+    @keyframes fade-up{
+      from{ opacity:0; transform:translateY(24px); }
+      to  { opacity:1; transform:translateY(0); }
+    }
+    @keyframes bob{
+      0%,100%{ transform:translateY(0); }
+      50%    { transform:translateY(-8px); }
+    }
+
+    /* ── SHARED SECTION STYLES ── */
+    .section-label{
+      font-family:'Dancing Script',cursive;
+      font-size:1.1rem; color:var(--gold);
+      letter-spacing:.15em; margin-bottom:.5rem;
+    }
+    .section-title{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.8rem,5vw,3.2rem);
+      font-style:italic; color:var(--cream); margin-bottom:2.5rem;
+    }
+
+    /* ── VIDEO ── */
+    #video-section{
+      padding:6rem 2rem;
+      background:linear-gradient(180deg,#0D0508,#1A0A0F);
+      text-align:center;
+    }
+    .video-wrapper{
+      max-width:720px; margin:0 auto;
+      border-radius:16px; overflow:hidden;
+      border:1px solid rgba(192,73,90,.4);
+      box-shadow:0 0 60px rgba(192,73,90,.3),0 0 120px rgba(192,73,90,.1);
+      position:relative;
+    }
+    /* 🎬 GANTI VIDEO: ubah ID YouTube atau pakai <video src="..."> */
+    .video-wrapper iframe{ width:100%; aspect-ratio:16/9; border:none; display:block; }
+    .video-glow{
+      position:absolute; inset:-2px; border-radius:18px;
+      background:conic-gradient(from 0deg,var(--rose),var(--plum),var(--rose));
+      z-index:-1; animation:spin-ring 6s linear infinite; opacity:.7;
+    }
+
+    /* ── LETTER (cinta) ── */
+    #letter-section{
+      padding:6rem 2rem;
+      background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(74,21,37,.4),transparent),
+                 linear-gradient(180deg,#1A0A0F,#0D0508);
+    }
+    .letter-container{
+      max-width:680px; margin:0 auto;
+      background:rgba(253,245,240,.04);
+      border:1px solid rgba(192,73,90,.25);
+      border-radius:4px; padding:3.5rem 3rem;
+      position:relative; backdrop-filter:blur(6px);
+    }
+    .letter-container::before,.letter-container::after{
+      content:''; position:absolute;
+      width:40px; height:40px;
+      border-color:var(--gold); border-style:solid; opacity:.4;
+    }
+    .letter-container::before{ top:12px; left:12px; border-width:2px 0 0 2px; }
+    .letter-container::after { bottom:12px; right:12px; border-width:0 2px 2px 0; }
+    .letter-date{
+      font-family:'Cormorant Garamond',serif; font-size:.85rem;
+      color:var(--gold); letter-spacing:.12em; margin-bottom:1.5rem; text-align:right;
+    }
+    .letter-salutation{
+      font-family:'Dancing Script',cursive; font-size:2rem;
+      color:var(--blush); margin-bottom:1.5rem;
+    }
+    .letter-body{
+      font-family:'Cormorant Garamond',serif; font-size:1.15rem;
+      line-height:1.9; color:rgba(253,245,240,.85); font-weight:300;
+    }
+    .letter-body p{ margin-bottom:1.2rem; }
+    .letter-body em{ color:var(--blush); font-style:italic; }
+    .letter-sign{ margin-top:2.5rem; text-align:right; }
+    .letter-sign-name{ font-family:'Dancing Script',cursive; font-size:2.2rem; color:var(--blush); }
+    .letter-sign-note{ font-family:'Cormorant Garamond',serif; font-size:.85rem; color:var(--gold); letter-spacing:.1em; margin-top:.3rem; }
+
+    /* ── SORRY SECTION ── */
+    #sorry-section{
+      padding:6rem 2rem; text-align:center;
+      background:radial-gradient(ellipse 70% 50% at 50% 50%,rgba(100,20,40,.35),transparent),
+                 linear-gradient(180deg,#0D0508,#1A0A0F);
+    }
+    .sorry-card{
+      max-width:640px; margin:0 auto;
+      background:rgba(192,73,90,.06);
+      border:1px solid rgba(192,73,90,.3);
+      border-radius:12px; padding:3rem 2.5rem;
+      position:relative;
+    }
+    .sorry-icon{ font-size:3rem; margin-bottom:1rem; display:block; animation:heartbeat 1.5s infinite alternate; }
+    .sorry-title{
+      font-family:'Playfair Display',serif; font-size:2rem;
+      font-style:italic; color:var(--blush); margin-bottom:1.5rem;
+    }
+    .sorry-body{
+      font-family:'Cormorant Garamond',serif; font-size:1.12rem;
+      line-height:1.9; color:rgba(253,245,240,.8); font-weight:300;
+    }
+    .sorry-body p{ margin-bottom:1rem; }
+    .sorry-body em{ color:var(--blush); }
+    .sorry-divider{
+      width:80px; height:1px; margin:2rem auto;
+      background:linear-gradient(90deg,transparent,var(--rose),transparent);
+    }
+
+    /* ── DOA SECTION ── */
+    #doa-section{
+      padding:6rem 2rem; text-align:center;
+      background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(74,21,37,.3),transparent),
+                 linear-gradient(180deg,#1A0A0F,#0D0508);
+    }
+    .doa-card{
+      max-width:640px; margin:0 auto;
+      background:rgba(212,168,67,.05);
+      border:1px solid rgba(212,168,67,.25);
+      border-radius:12px; padding:3rem 2.5rem;
+      position:relative;
+    }
+    .doa-icon{ font-size:3rem; margin-bottom:1rem; display:block; animation:glow-gold 2s ease-in-out infinite alternate; }
+    @keyframes glow-gold{
+      from{ filter:drop-shadow(0 0 8px rgba(212,168,67,.4)); }
+      to  { filter:drop-shadow(0 0 24px rgba(212,168,67,.9)); }
+    }
+    .doa-title{
+      font-family:'Playfair Display',serif; font-size:2rem;
+      font-style:italic; color:var(--gold); margin-bottom:1.5rem;
+    }
+    .doa-body{
+      font-family:'Cormorant Garamond',serif; font-size:1.12rem;
+      line-height:2; color:rgba(253,245,240,.82); font-weight:300;
+    }
+    .doa-body p{ margin-bottom:1rem; }
+    .doa-body em{ color:var(--soft-gold); }
+    .doa-item{
+      display:flex; align-items:flex-start; gap:1rem;
+      text-align:left; margin-bottom:1.1rem;
+    }
+    .doa-bullet{
+      flex-shrink:0; font-size:1.1rem; margin-top:.15rem;
+    }
+    .doa-item-text{
+      font-family:'Cormorant Garamond',serif; font-size:1.1rem;
+      line-height:1.8; color:rgba(253,245,240,.82);
+    }
+
+    /* ── TERIMA KASIH SECTION ── */
+    #thanks-section{
+      padding:6rem 2rem; text-align:center;
+      background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(50,10,25,.4),transparent),
+                 linear-gradient(180deg,#0D0508,#1A0A0F);
+    }
+    .thanks-card{
+      max-width:640px; margin:0 auto;
+      background:rgba(247,214,219,.04);
+      border:1px solid rgba(232,160,169,.25);
+      border-radius:12px; padding:3rem 2.5rem;
+    }
+    .thanks-icon{ font-size:3rem; margin-bottom:1rem; display:block; animation:heartbeat 2s infinite alternate; }
+    .thanks-title{
+      font-family:'Playfair Display',serif; font-size:2rem;
+      font-style:italic; color:var(--cream); margin-bottom:1.5rem;
+    }
+    .thanks-body{
+      font-family:'Cormorant Garamond',serif; font-size:1.12rem;
+      line-height:1.9; color:rgba(253,245,240,.82); font-weight:300;
+    }
+    .thanks-body p{ margin-bottom:1rem; }
+    .thanks-body em{ color:var(--blush); }
+    .thanks-list{
+      list-style:none; margin:1.2rem 0; text-align:left;
+    }
+    .thanks-list li{
+      display:flex; align-items:flex-start; gap:.8rem;
+      font-family:'Cormorant Garamond',serif; font-size:1.1rem;
+      color:rgba(253,245,240,.82); line-height:1.7;
+      margin-bottom:.7rem; padding-bottom:.7rem;
+      border-bottom:1px solid rgba(192,73,90,.1);
+    }
+    .thanks-list li:last-child{ border-bottom:none; }
+    .thanks-list li span:first-child{ flex-shrink:0; margin-top:.1rem; }
+
+    /* ── GALLERY ── */
+    #gallery-section{
+      padding:6rem 2rem;
+      background:linear-gradient(180deg,#1A0A0F,#0D0508);
+      text-align:center;
+    }
+    .gallery-grid{
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:1.2rem; max-width:900px; margin:2.5rem auto 0;
+    }
+    .gallery-card{
+      border-radius:10px; overflow:hidden;
+      border:1px solid rgba(192,73,90,.3); aspect-ratio:1;
+      position:relative; cursor:none;
+      transition:transform .4s ease,box-shadow .4s ease;
+    }
+    .gallery-card:hover{ transform:scale(1.04); box-shadow:0 0 30px rgba(192,73,90,.5); }
+    /*
+    ╔══════════════════════════════════════════════════════════╗
+    ║  FOTO GALERI — 6 foto kenangan di bagian bawah          ║
+    ╠══════════════════════════════════════════════════════════╣
+    ║  Sama caranya seperti foto profil di atas.              ║
+    ║  Upload 6 foto ke GitHub, ambil raw URL masing-masing,  ║
+    ║  lalu ganti URL pada gc-1 sampai gc-6 di bawah ini.     ║
+    ║                                                          ║
+    ║  Contoh nama file yang bagus di GitHub:                 ║
+    ║    kenangan-1.jpg, kenangan-2.jpg, dst                  ║
+    ║                                                          ║
+    ║  Contoh URL raw GitHub untuk galeri:                    ║
+    ║  https://raw.githubusercontent.com/namakamu/repo/main/  ║
+    ║    kenangan-1.jpg  ← untuk gc-1                         ║
+    ║    kenangan-2.jpg  ← untuk gc-2                         ║
+    ║    kenangan-3.jpg  ← untuk gc-3  ... dst               ║
+    ╚══════════════════════════════════════════════════════════╝
+    */
+
+    /* FOTO GALERI 1 — ganti URL di bawah ini */
+    /* Contoh: .gc-1{ background:url('https://raw.githubusercontent.com/bilqis/surat/main/kenangan-1.jpg') center/cover; } */
+    .gc-1{ background:url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=400&q=80') center/cover; }
+
+    /* FOTO GALERI 2 */
+    .gc-2{ background:url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400&q=80') center/cover; }
+
+    /* FOTO GALERI 3 */
+    .gc-3{ background:url('https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=400&q=80') center/cover; }
+
+    /* FOTO GALERI 4 */
+    .gc-4{ background:url('https://images.unsplash.com/photo-1490750967868-88df5691cc3c?w=400&q=80') center/cover; }
+
+    /* FOTO GALERI 5 */
+    .gc-5{ background:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&q=80') center/cover; }
+
+    /* FOTO GALERI 6 */
+    .gc-6{ background:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=400&q=80') center/cover; }
+    .gallery-card::after{
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(180deg,transparent 50%,rgba(26,10,15,.7));
+    }
+    .gallery-caption{
+      position:absolute; bottom:0; left:0; right:0; padding:1rem;
+      font-family:'Dancing Script',cursive; font-size:1.1rem;
+      color:var(--cream); z-index:2; opacity:0; transition:opacity .3s;
+    }
+    .gallery-card:hover .gallery-caption{ opacity:1; }
+
+    /* ── CLOSING ── */
+    #closing{
+      min-height:80vh; display:flex; align-items:center;
+      justify-content:center; flex-direction:column; text-align:center;
+      padding:6rem 2rem; position:relative; overflow:hidden;
+      background:radial-gradient(ellipse 60% 60% at 50% 60%,rgba(192,73,90,.2),transparent),
+                 linear-gradient(180deg,#1A0A0F,#0D0508);
+    }
+    .closing-heart{
+      font-size:5rem; animation:heartbeat 1.2s ease-in-out infinite alternate;
+      margin-bottom:1.5rem;
+      filter:drop-shadow(0 0 30px rgba(192,73,90,.8));
+    }
+    .closing-quote{
+      font-family:'Playfair Display',serif; font-size:clamp(1.4rem,4vw,2.5rem);
+      font-style:italic; color:var(--cream); max-width:600px; line-height:1.5;
+    }
+    .closing-quote em{ color:var(--blush); }
+    .closing-note{ margin-top:2rem; font-family:'Dancing Script',cursive; font-size:1.3rem; color:var(--gold); }
+    .star-field{ position:absolute; inset:0; pointer-events:none; }
+    .star{
+      position:absolute; width:2px; height:2px;
+      background:white; border-radius:50%;
+      animation:twinkle linear infinite;
+    }
+    @keyframes twinkle{
+      0%,100%{ opacity:0; }
+      50%    { opacity:1; }
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal{
+      opacity:0; transform:translateY(40px);
+      transition:opacity .9s ease,transform .9s ease;
+    }
+    .reveal.visible{ opacity:1; transform:none; }
+
+    /* ── HEART BURST ── */
+    .heart-burst{
+      position:fixed; pointer-events:none; z-index:9998;
+      font-size:1.2rem; animation:burst-up 1.2s ease-out forwards;
+    }
+    @keyframes burst-up{
+      0%  { opacity:1; transform:translateY(0) scale(.5); }
+      100%{ opacity:0; transform:translateY(-100px) scale(1.5); }
+    }
+
+    @media(max-width:640px){
+      .letter-container,.sorry-card,.doa-card,.thanks-card{ padding:2rem 1.2rem; }
+      .gallery-grid{ grid-template-columns:repeat(2,1fr); }
+    }
+  </style>
+</head>
+<body class="locked">
+
+<!-- Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursor-dot"></div>
+
+<!-- ════ ENVELOPE OPENING SCREEN ════ -->
+<div id="envelope-screen">
+  <div id="env-hearts"></div>
+  <div class="env-wrap">
+    <div class="envelope">
+      <div class="env-body"></div>
+      <div class="env-flap"></div>
+      <div class="env-bottom"></div>
+      <div class="env-left"></div>
+      <div class="env-right"></div>
+      <div class="env-seal">💌</div>
+    </div>
+    <div class="env-title">Ada sesuatu untukmu,<br><em style="color:var(--soft-gold)">Bilqis…</em></div>
+    <div class="env-subtitle">— sebuah pesan dari hati —</div>
+    <button id="open-btn" aria-label="Buka surat">
+      <div class="open-btn-ripple"></div>
+      <div class="open-btn-ripple"></div>
+      <div class="open-btn-inner">
+        💌 &nbsp; Buka Suratnya
+      </div>
+    </button>
+  </div>
+</div>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="loader-heart">💌</div>
+  <div class="loader-text">Sedang menyiapkan sesuatu untukmu…</div>
+</div>
+
+<!-- Petals -->
+<div id="petals-container"></div>
+
+<!-- 🎵 DAFTAR LAGU: ganti src dengan raw URL GitHub kamu -->
+<!--
+  Cara pakai GitHub raw URL:
+  1. Upload file .mp3 ke repo GitHub kamu
+  2. Buka file tersebut di GitHub → klik tombol "Raw"
+  3. Copy URL-nya, lalu paste di bawah sebagai nilai "src"
+  Contoh: https://raw.githubusercontent.com/username/repo/main/lagu1.mp3
+-->
+<audio id="bg-music" loop></audio>
+<div id="music-player">
+  <button class="music-btn" id="music-prev" title="Lagu sebelumnya">◀</button>
+  <button class="music-btn" id="music-toggle">▶</button>
+  <button class="music-btn" id="music-next" title="Lagu berikutnya">▶▶</button>
+  <div style="display:flex;flex-direction:column;gap:2px;min-width:0;">
+    <span class="music-label" id="music-label" style="font-size:.72rem;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Melodi Untukmu</span>
+    <span style="font-family:'Cormorant Garamond',serif;font-size:.62rem;color:rgba(232,160,169,.45);letter-spacing:.08em;" id="music-track-num">1 / 2</span>
+  </div>
+  <div class="music-bars paused" id="music-bars">
+    <div class="music-bar"></div><div class="music-bar"></div>
+    <div class="music-bar"></div><div class="music-bar"></div>
+  </div>
+</div>
+
+<!-- ════ HERO ════ -->
+<section id="hero">
+  <div class="photo-frame-wrap">
+    <div class="photo-ring"></div>
+    <div class="photo-frame"></div>
+  </div>
+  <div class="hero-eyebrow">— Sebuah surat kecil —</div>
+  <h1 class="hero-title">Bilqis</h1>
+  <p class="hero-subtitle">Kamu adalah puisi yang tidak pernah selesai aku tulis.</p>
+  <div class="hero-divider"></div>
+  <span class="scroll-hint">↓ &nbsp; Gulir ke bawah &nbsp; ↓</span>
+</section>
+
+<!-- ════ VIDEO ════ -->
+<section id="video-section">
+  <div class="section-label reveal">— Kenangan kita —</div>
+  <h2 class="section-title reveal">Momen yang tak terlupakan</h2>
+  <div class="video-wrapper reveal">
+    <div class="video-glow"></div>
+    <!--
+    ╔═══════════════════════════════════════════════════════════════╗
+    ║  VIDEO KENANGAN — muncul di bagian "Momen yang tak terlupakan"║
+    ╠═══════════════════════════════════════════════════════════════╣
+    ║                                                               ║
+    ║  OPSI A — Pakai video YouTube (paling mudah):                ║
+    ║    1. Buka video YouTube kamu                                 ║
+    ║    2. Klik "Share" → "Embed"                                  ║
+    ║    3. Copy hanya bagian ID-nya (setelah /embed/)              ║
+    ║    4. Ganti ID di URL <iframe> di bawah ini                   ║
+    ║    Contoh: src="https://www.youtube.com/embed/ID_VIDEO_KAMU"  ║
+    ║                                                               ║
+    ║  OPSI B — Pakai file video dari GitHub:                       ║
+    ║    1. Upload file .mp4 ke repo GitHub kamu                    ║
+    ║    2. Buka file → klik "Raw" → copy URL-nya                   ║
+    ║    3. Hapus <iframe> di bawah, ganti dengan tag <video>:      ║
+    ║       <video controls style="width:100%;display:block;"       ║
+    ║        src="https://raw.githubusercontent.com/                ║
+    ║              namakamu/repo/main/video-kenangan.mp4">          ║
+    ║       </video>                                                 ║
+    ╚═══════════════════════════════════════════════════════════════╝
+    -->
+
+    <!-- OPSI A (aktif sekarang) — YouTube, ganti ID setelah /embed/ -->
+    <!-- Contoh: src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&rel=0" -->
+    <iframe src="https://www.youtube.com/embed/450p7goxZqg?autoplay=0&rel=0&modestbranding=1"
+      title="Kenangan kita"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
+
+    <!-- OPSI B (nonaktif) — uncomment baris di bawah jika mau pakai video dari GitHub -->
+    <!--
+    <video controls style="width:100%;display:block;border-radius:12px;"
+      src="https://raw.githubusercontent.com/namakamu/nama-repo/main/video-kenangan.mp4">
+    </video>
+    -->
+  </div>
+</section>
+
+<!-- ════ SURAT CINTA ════ -->
+<section id="letter-section">
+  <div style="text-align:center; margin-bottom:2rem;">
+    <div class="section-label reveal">— Dari hatiku —</div>
+    <h2 class="section-title reveal">Surat Cinta</h2>
+  </div>
+  <div class="letter-container reveal">
+    <div class="letter-date">14 Juni 2026</div>
+    <div class="letter-salutation">Untuk Bilqis yang kucinta,</div>
+    <div class="letter-body">
+      <p>Ada hal-hal kecil yang selalu membuatku tersenyum tanpa sebab &mdash;
+        cara kamu tertawa, suara kamu waktu cerita hal sepele,
+        dan cahaya di matamu yang entah kenapa selalu terasa seperti rumah.</p>
+      <p>Aku tidak selalu pandai berkata-kata. Tapi kamu perlu tahu bahwa
+        <em>setiap hari yang aku lewati bersamamu adalah hari yang paling berarti.</em>
+        Bukan karena semuanya sempurna, tapi karena kamu ada di sana.</p>
+      <p>Kalau aku bisa memilih &mdash; dari semua orang, di semua waktu &mdash;
+        aku akan tetap memilihmu. Berulang kali. Tanpa ragu.</p>
+      <p><em>Aku sayang kamu, Bilqis.</em></p>
+    </div>
+    <div class="letter-sign">
+      <div class="letter-sign-name">Seseorang yang menyayangimu 🌹</div>
+      <div class="letter-sign-note">dengan sepenuh hati</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ PERMINTAAN MAAF ════ -->
+<section id="sorry-section">
+  <div class="section-label reveal">— Dari lubuk hati —</div>
+  <h2 class="section-title reveal">Permintaan Maaf</h2>
+  <div class="sorry-card reveal">
+    <span class="sorry-icon">🙏</span>
+    <div class="sorry-title">Maafkan Aku, Bilqis</div>
+    <div class="sorry-body">
+      <p>Aku tahu, ada saat-saat aku tidak sempurna.
+        Ada saat aku salah berkata, salah bersikap, atau membuat hatimu tidak nyaman.
+        <em>Dan untuk semua itu, aku sungguh-sungguh meminta maaf.</em></p>
+      <p>Maaf kalau pernah membuatmu merasa tidak cukup diperhatikan,
+        padahal kamu adalah prioritas yang tidak pernah berubah di hatiku.</p>
+      <p>Maaf kalau pernah ada egoku yang lebih besar dari perasaanmu.
+        Maaf kalau pernah ada kata-kata yang keluar tanpa aku pikirkan dulu dampaknya.</p>
+      <p><em>Aku tidak minta kamu melupakan, tapi aku berharap kamu bisa memaafkan —
+        karena aku mau terus belajar menjadi lebih baik, untukmu.</em></p>
+    </div>
+    <div class="sorry-divider"></div>
+    <p style="font-family:'Dancing Script',cursive; font-size:1.3rem; color:var(--blush);">
+      Dengan ketulusan yang tidak pernah palsu 🤍
+    </p>
+  </div>
+</section>
+
+<!-- ════ DOA ════ -->
+<section id="doa-section">
+  <div class="section-label reveal">— Doa yang kupanjatkan —</div>
+  <h2 class="section-title reveal" style="color:var(--soft-gold);">Doa Untukmu</h2>
+  <div class="doa-card reveal">
+    <span class="doa-icon">🌙</span>
+    <div class="doa-title">Semoga Allah Jaga Kamu Selalu</div>
+    <div class="doa-body">
+      <p>Setiap malam sebelum aku tidur, ada satu nama yang selalu kusebut
+        dalam doaku. Namamu, Bilqis.</p>
+      <div class="doa-item">
+        <span class="doa-bullet">🌟</span>
+        <span class="doa-item-text">Semoga Allah selalu menjaga hatimu dan menjauhkanmu dari kesedihan yang tidak perlu.</span>
+      </div>
+      <div class="doa-item">
+        <span class="doa-bullet">🌙</span>
+        <span class="doa-item-text">Semoga langkahmu selalu diterangi cahaya dan dimudahkan dalam setiap urusan.</span>
+      </div>
+      <div class="doa-item">
+        <span class="doa-bullet">🌸</span>
+        <span class="doa-item-text">Semoga mimpi-mimpimu tercapai satu demi satu, karena kamu layak mendapatkan yang terbaik.</span>
+      </div>
+      <div class="doa-item">
+        <span class="doa-bullet">💛</span>
+        <span class="doa-item-text">Semoga kesehatanmu terjaga, hidupmu bahagia, dan senyummu tidak pernah redup.</span>
+      </div>
+      <div class="doa-item">
+        <span class="doa-bullet">🤲</span>
+        <span class="doa-item-text">Dan semoga Allah pertemukan kita dalam keadaan yang terbaik, di waktu yang tepat, dengan cara yang indah.</span>
+      </div>
+      <p style="margin-top:1rem;"><em>Aamiin, ya Rabb…</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ UCAPAN TERIMA KASIH ════ -->
+<section id="thanks-section">
+  <div class="section-label reveal">— Yang perlu kamu tahu —</div>
+  <h2 class="section-title reveal">Terima Kasih</h2>
+  <div class="thanks-card reveal">
+    <span class="thanks-icon">💖</span>
+    <div class="thanks-title">Terima Kasih, Bilqis</div>
+    <div class="thanks-body">
+      <p>Ada banyak hal yang tidak pernah sempat aku ucapkan,
+        tapi sudah lama ingin aku sampaikan. Jadi izinkan aku berkata:</p>
+      <ul class="thanks-list">
+        <li>
+          <span>🌹</span>
+          <span>Terima kasih sudah <em>hadir</em> &mdash; karena kehadiranmu saja sudah membuat duniaku terasa lebih hangat.</span>
+        </li>
+        <li>
+          <span>🌙</span>
+          <span>Terima kasih sudah <em>bersabar</em> dengan segala kekuranganku, di saat aku sendiri tidak cukup sabar pada diriku sendiri.</span>
+        </li>
+        <li>
+          <span>💬</span>
+          <span>Terima kasih sudah <em>mendengar</em> &mdash; setiap cerita, keluhan, dan hal-hal tidak penting yang aku ceritakan.</span>
+        </li>
+        <li>
+          <span>✨</span>
+          <span>Terima kasih sudah <em>percaya</em> padaku, bahkan ketika aku belum terlalu percaya pada diriku sendiri.</span>
+        </li>
+        <li>
+          <span>🤍</span>
+          <span>Terima kasih sudah menjadi <em>kamu</em> &mdash; seutuhnya, apa adanya, tanpa berpura-pura jadi siapa pun.</span>
+        </li>
+      </ul>
+      <p>Kamu tidak akan pernah tahu seberapa besar dampakmu pada hidupku.
+        <em>Tapi semoga surat ini sedikit memberitahumu.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ GALLERY ════ -->
+<section id="gallery-section">
+  <div class="section-label reveal">— Koleksi kenangan —</div>
+  <h2 class="section-title reveal">Foto-foto Kita</h2>
+  <div class="gallery-grid reveal">
+    <div class="gallery-card gc-1"><div class="gallery-caption">Hari itu 🌸</div></div>
+    <div class="gallery-card gc-2"><div class="gallery-caption">Bersamamu 💕</div></div>
+    <div class="gallery-card gc-3"><div class="gallery-caption">Selalu ada 🌿</div></div>
+    <div class="gallery-card gc-4"><div class="gallery-caption">Jangan lupa 🌷</div></div>
+    <div class="gallery-card gc-5"><div class="gallery-caption">Saat itu 🌙</div></div>
+    <div class="gallery-card gc-6"><div class="gallery-caption">Selamanya 🤍</div></div>
+  </div>
+</section>
+
+<!-- ════ CLOSING ════ -->
+<section id="closing">
+  <div class="star-field" id="star-field"></div>
+  <div class="closing-heart">💖</div>
+  <blockquote class="closing-quote reveal">
+    "Mencintaimu bukan pilihan &mdash; <em>itu adalah satu-satunya hal yang terasa benar.</em>"
+  </blockquote>
+  <p class="closing-note reveal">— untukmu, selalu —</p>
+</section>
+
+<script>
+  /* ── CURSOR ── */
+  const cursor    = document.getElementById('cursor');
+  const cursorDot = document.getElementById('cursor-dot');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = cursorDot.style.left = e.clientX + 'px';
+    cursor.style.top  = cursorDot.style.top  = e.clientY + 'px';
+  });
+
+  /* ── HEART BURST ── */
+  document.addEventListener('click', e => {
+    const emojis = ['💖','💕','🌹','✨','💗','🌸'];
+    for (let i = 0; i < 5; i++) {
+      const h = document.createElement('div');
+      h.className = 'heart-burst';
+      h.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      h.style.left = (e.clientX + (Math.random()-.5)*60) + 'px';
+      h.style.top  = e.clientY + 'px';
+      h.style.animationDuration = (.8+Math.random()*.5) + 's';
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 1400);
+    }
+  });
+
+  /* ── FLOATING HEARTS on envelope screen ── */
+  const envHearts = document.getElementById('env-hearts');
+  const heartEmojis = ['💖','💕','🌹','🌸','💗','✨','🌷'];
+  for (let i = 0; i < 20; i++) {
+    const fh = document.createElement('div');
+    fh.className = 'fh';
+    fh.textContent = heartEmojis[Math.floor(Math.random()*heartEmojis.length)];
+    fh.style.left   = Math.random()*100 + 'vw';
+    fh.style.bottom = '-60px';
+    fh.style.fontSize = (.9 + Math.random()*1.4) + 'rem';
+    fh.style.animationDuration  = (5 + Math.random()*8) + 's';
+    fh.style.animationDelay     = (Math.random()*10) + 's';
+    envHearts.appendChild(fh);
+  }
+
+  /* ── OPEN BUTTON ── */
+  document.getElementById('open-btn').addEventListener('click', () => {
+    const screen = document.getElementById('envelope-screen');
+    screen.classList.add('gone');
+    document.body.classList.remove('locked');
+
+    /* auto-play musik saat surat dibuka */
+    audio.play().then(() => {
+      btn.textContent = '⏸';
+      bars.classList.remove('paused');
+      playing = true;
+    }).catch(() => {});
+  });
+
+  /* ── LOADER ── */
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('loader').classList.add('hidden'), 1800);
+  });
+
+  /* ── PETALS ── */
+  const pc = document.getElementById('petals-container');
+  for (let i = 0; i < 22; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.style.left   = Math.random()*100 + 'vw';
+    p.style.width  = (10+Math.random()*10) + 'px';
+    p.style.height = (14+Math.random()*12) + 'px';
+    p.style.animationDuration = (7+Math.random()*10) + 's';
+    p.style.animationDelay    = (Math.random()*12) + 's';
+    pc.appendChild(p);
+  }
+
+  /* ── STARS ── */
+  const sf = document.getElementById('star-field');
+  for (let i = 0; i < 80; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.left = Math.random()*100 + '%';
+    s.style.top  = Math.random()*100 + '%';
+    s.style.animationDuration = (2+Math.random()*4) + 's';
+    s.style.animationDelay    = (Math.random()*5) + 's';
+    sf.appendChild(s);
+  }
+
+  /* ── SCROLL REVEAL ── */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+
+  /* ── MUSIC PLAYER — 2 LAGU ── */
+  /*
+  ╔═══════════════════════════════════════════════════════════════╗
+  ║  CARA GANTI LAGU DARI GITHUB:                                ║
+  ╠═══════════════════════════════════════════════════════════════╣
+  ║  1. Upload file .mp3 ke repo GitHub kamu                     ║
+  ║     (GitHub → repo → Add file → Upload files → Commit)       ║
+  ║                                                               ║
+  ║  2. Buka file .mp3 di GitHub → klik tombol "Raw"             ║
+  ║     Copy URL dari address bar                                 ║
+  ║                                                               ║
+  ║  3. Paste URL-nya di bagian 'src' di bawah ini               ║
+  ║     Ganti juga 'name' dengan judul lagu yang kamu mau        ║
+  ║                                                               ║
+  ║  Contoh URL raw GitHub yang benar:                           ║
+  ║    https://raw.githubusercontent.com/bilqis/surat/main/      ║
+  ║      lagu-satu.mp3                                            ║
+  ║    https://raw.githubusercontent.com/bilqis/surat/main/      ║
+  ║      lagu-dua.mp3                                             ║
+  ║                                                               ║
+  ║  PENTING: File harus .mp3, bukan .m4a atau format lain       ║
+  ╚═══════════════════════════════════════════════════════════════╝
+  */
+  const playlist = [
+    {
+      /* ▼ LAGU 1: ganti src dan name di bawah ini ▼ */
+      src:  'https://raw.githubusercontent.com/namakamu/nama-repo/main/lagu-satu.mp3',
+      /* Contoh: 'https://raw.githubusercontent.com/bilqis/surat/main/satu-satunya.mp3' */
+      name: 'Lagu Pertama — Ganti Judul Ini'
+    },
+    {
+      /* ▼ LAGU 2: ganti src dan name di bawah ini ▼ */
+      src:  'https://raw.githubusercontent.com/namakamu/nama-repo/main/lagu-dua.mp3',
+      /* Contoh: 'https://raw.githubusercontent.com/bilqis/surat/main/kenangan-kita.mp3' */
+      name: 'Lagu Kedua — Ganti Judul Ini'
+    }
+  ];
+
+  let currentTrack = 0;
+  let playing = false;
+
+  const audio    = document.getElementById('bg-music');
+  const btn      = document.getElementById('music-toggle');
+  const bars     = document.getElementById('music-bars');
+  const label    = document.getElementById('music-label');
+  const trackNum = document.getElementById('music-track-num');
+  const prevBtn  = document.getElementById('music-prev');
+  const nextBtn  = document.getElementById('music-next');
+
+  function loadTrack(index, autoplay) {
+    currentTrack = index;
+    audio.src = playlist[currentTrack].src;
+    label.textContent = playlist[currentTrack].name;
+    trackNum.textContent = (currentTrack + 1) + ' / ' + playlist.length;
+    audio.load();
+    if (autoplay) {
+      audio.play().then(() => {
+        btn.textContent = '⏸'; bars.classList.remove('paused'); playing = true;
+      }).catch(() => {});
+    } else {
+      btn.textContent = '▶'; bars.classList.add('paused'); playing = false;
+    }
+  }
+
+  function playPause() {
+    if (playing) {
+      audio.pause(); btn.textContent = '▶';
+      bars.classList.add('paused'); playing = false;
+    } else {
+      audio.play().catch(()=>{});
+      btn.textContent = '⏸'; bars.classList.remove('paused'); playing = true;
+    }
+  }
+
+  btn.addEventListener('click', playPause);
+
+  prevBtn.addEventListener('click', () => {
+    const idx = (currentTrack - 1 + playlist.length) % playlist.length;
+    loadTrack(idx, playing);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    const idx = (currentTrack + 1) % playlist.length;
+    loadTrack(idx, playing);
+  });
+
+  audio.addEventListener('ended', () => {
+    const idx = (currentTrack + 1) % playlist.length;
+    loadTrack(idx, true);
+  });
+
+  /* init: load track pertama tanpa autoplay */
+  loadTrack(0, false);
+</script>
+</body>
+</html>
