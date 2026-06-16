@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Untuk Bilqis 💌</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@400;700" rel="stylesheet"/>
   <style>
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     :root {
@@ -139,7 +139,7 @@
     /* OPEN BUTTON */
     #open-btn {
       position:relative; background:none; border:none;
-      cursor:none; outline:none; margin-top:.5rem;
+      cursor:pointer; outline:none; margin-top:.5rem;
     }
     .open-btn-ring {
       position:absolute; inset:-6px; border-radius:50px;
@@ -208,7 +208,7 @@
     }
     #music-player:hover{ border-color:var(--rose); }
     .music-btn{
-      background:none; border:none; cursor:none;
+      background:none; border:none; cursor:pointer;
       color:var(--blush); font-size:1rem;
       transition:color .2s,transform .2s;
       padding:0 .1rem;
@@ -278,30 +278,9 @@
       box-shadow:0 0 40px rgba(192,73,90,.5),0 0 80px rgba(192,73,90,.2);
       position:relative; z-index:1;
     }
-    /*
-    ╔══════════════════════════════════════════════════════╗
-    ║  FOTO UTAMA — foto profil bulat di halaman pertama  ║
-    ╠══════════════════════════════════════════════════════╣
-    ║  CARA GANTI KE FOTO KAMU DARI GITHUB:               ║
-    ║  1. Buka GitHub → repo kamu → klik "Add file"       ║
-    ║     → "Upload files" → pilih foto → klik "Commit"   ║
-    ║  2. Klik nama file foto yang baru diupload           ║
-    ║  3. Klik tombol "Raw" (pojok kanan atas)             ║
-    ║  4. Copy URL dari address bar browser kamu           ║
-    ║  5. Paste URL itu menggantikan URL di baris src      ║
-    ║                                                      ║
-    ║  Contoh URL GitHub Raw yang benar:                   ║
-    ║  https://raw.githubusercontent.com/                  ║
-    ║    namakamu/nama-repo/main/foto-profil.jpg           ║
-    ╚══════════════════════════════════════════════════════╝
-    */
     .photo-frame::before{
       content:''; display:block; width:100%; height:100%;
-
-      /* GANTI URL INI dengan raw URL GitHub foto profil kamu */
-      /* Contoh: background-image:url('https://raw.githubusercontent.com/bilqis/surat/main/foto.jpg'); */
-      background-image:url('https://raw.githubusercontent.com/NIZAMPAP/qisstr/main/20260615_194615.jpg'); */
-
+      background-image:url('https://raw.githubusercontent.com/NIZAMPAP/qisstr/main/20260615_194615.jpg');
       background-size:cover; background-position:center;
     }
     .hero-eyebrow{
@@ -370,7 +349,6 @@
       box-shadow:0 0 60px rgba(192,73,90,.3),0 0 120px rgba(192,73,90,.1);
       position:relative;
     }
-    /* 🎬 GANTI VIDEO: ubah ID YouTube atau pakai <video src="..."> */
     .video-wrapper iframe{ width:100%; aspect-ratio:16/9; border:none; display:block; }
     .video-glow{
       position:absolute; inset:-2px; border-radius:18px;
@@ -534,46 +512,15 @@
     .gallery-card{
       border-radius:10px; overflow:hidden;
       border:1px solid rgba(192,73,90,.3); aspect-ratio:1;
-      position:relative; cursor:none;
+      position:relative; cursor:pointer;
       transition:transform .4s ease,box-shadow .4s ease;
     }
     .gallery-card:hover{ transform:scale(1.04); box-shadow:0 0 30px rgba(192,73,90,.5); }
-    /*
-    ╔══════════════════════════════════════════════════════════╗
-    ║  FOTO GALERI — 6 foto kenangan di bagian bawah          ║
-    ╠══════════════════════════════════════════════════════════╣
-    ║  Sama caranya seperti foto profil di atas.              ║
-    ║  Upload 6 foto ke GitHub, ambil raw URL masing-masing,  ║
-    ║  lalu ganti URL pada gc-1 sampai gc-6 di bawah ini.     ║
-    ║                                                          ║
-    ║  Contoh nama file yang bagus di GitHub:                 ║
-    ║    kenangan-1.jpg, kenangan-2.jpg, dst                  ║
-    ║                                                          ║
-    ║  Contoh URL raw GitHub untuk galeri:                    ║
-    ║  https://raw.githubusercontent.com/namakamu/repo/main/  ║
-    ║    kenangan-1.jpg  ← untuk gc-1                         ║
-    ║    kenangan-2.jpg  ← untuk gc-2                         ║
-    ║    kenangan-3.jpg  ← untuk gc-3  ... dst               ║
-    ╚══════════════════════════════════════════════════════════╝
-    */
-
-    /* FOTO GALERI 1 — ganti URL di bawah ini */
-    /* Contoh: .gc-1{ background:url('https://raw.githubusercontent.com/bilqis/surat/main/kenangan-1.jpg') center/cover; } */
     .gc-1{ background:url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=400&q=80') center/cover; }
-
-    /* FOTO GALERI 2 */
     .gc-2{ background:url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400&q=80') center/cover; }
-
-    /* FOTO GALERI 3 */
     .gc-3{ background:url('https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=400&q=80') center/cover; }
-
-    /* FOTO GALERI 4 */
     .gc-4{ background:url('https://images.unsplash.com/photo-1490750967868-88df5691cc3c?w=400&q=80') center/cover; }
-
-    /* FOTO GALERI 5 */
     .gc-5{ background:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&q=80') center/cover; }
-
-    /* FOTO GALERI 6 */
     .gc-6{ background:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=400&q=80') center/cover; }
     .gallery-card::after{
       content:''; position:absolute; inset:0;
@@ -678,15 +625,10 @@
 <!-- Petals -->
 <div id="petals-container"></div>
 
-<!-- 🎵 DAFTAR LAGU: ganti src dengan raw URL GitHub kamu -->
-<!--
-  Cara pakai GitHub raw URL:
-  1. Upload file .mp3 ke repo GitHub kamu
-  2. Buka file tersebut di GitHub → klik tombol "Raw"
-  3. Copy URL-nya, lalu paste di bawah sebagai nilai "src"
-  Contoh: https://raw.githubusercontent.com/username/repo/main/lagu1.mp3
--->
-<audio id="bg-music" loop></audio>
+<!-- 🎵 AUDIO ELEMENT -->
+<audio id="bg-music"></audio>
+
+<!-- Music Player -->
 <div id="music-player">
   <button class="music-btn" id="music-prev" title="Lagu sebelumnya">◀</button>
   <button class="music-btn" id="music-toggle">▶</button>
@@ -720,42 +662,10 @@
   <h2 class="section-title reveal">Momen yang tak terlupakan</h2>
   <div class="video-wrapper reveal">
     <div class="video-glow"></div>
-    <!--
-    ╔═══════════════════════════════════════════════════════════════╗
-    ║  VIDEO KENANGAN — muncul di bagian "Momen yang tak terlupakan"║
-    ╠═══════════════════════════════════════════════════════════════╣
-    ║                                                               ║
-    ║  OPSI A — Pakai video YouTube (paling mudah):                ║
-    ║    1. Buka video YouTube kamu                                 ║
-    ║    2. Klik "Share" → "Embed"                                  ║
-    ║    3. Copy hanya bagian ID-nya (setelah /embed/)              ║
-    ║    4. Ganti ID di URL <iframe> di bawah ini                   ║
-    ║    Contoh: src="https://www.youtube.com/embed/ID_VIDEO_KAMU"  ║
-    ║                                                               ║
-    ║  OPSI B — Pakai file video dari GitHub:                       ║
-    ║    1. Upload file .mp4 ke repo GitHub kamu                    ║
-    ║    2. Buka file → klik "Raw" → copy URL-nya                   ║
-    ║    3. Hapus <iframe> di bawah, ganti dengan tag <video>:      ║
-    ║       <video controls style="width:100%;display:block;"       ║
-    ║        src="https://raw.githubusercontent.com/                ║
-    ║              namakamu/repo/main/video-kenangan.mp4">          ║
-    ║       </video>                                                 ║
-    ╚═══════════════════════════════════════════════════════════════╝
-    -->
-
-    <!-- OPSI A (aktif sekarang) — YouTube, ganti ID setelah /embed/ -->
-    <!-- Contoh: src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&rel=0" -->
     <iframe src="https://www.youtube.com/embed/450p7goxZqg?autoplay=0&rel=0&modestbranding=1"
       title="Kenangan kita"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen></iframe>
-
-    <!-- OPSI B (nonaktif) — uncomment baris di bawah jika mau pakai video dari GitHub -->
-    <!--
-    <video controls style="width:100%;display:block;border-radius:12px;"
-      src="https://raw.githubusercontent.com/namakamu/nama-repo/main/video-kenangan.mp4">
-    </video>
-    -->
   </div>
 </section>
 
@@ -947,20 +857,6 @@
     envHearts.appendChild(fh);
   }
 
-  /* ── OPEN BUTTON ── */
-  document.getElementById('open-btn').addEventListener('click', () => {
-    const screen = document.getElementById('envelope-screen');
-    screen.classList.add('gone');
-    document.body.classList.remove('locked');
-
-    /* auto-play musik saat surat dibuka */
-    audio.play().then(() => {
-      btn.textContent = '⏸';
-      bars.classList.remove('paused');
-      playing = true;
-    }).catch(() => {});
-  });
-
   /* ── LOADER ── */
   window.addEventListener('load', () => {
     setTimeout(() => document.getElementById('loader').classList.add('hidden'), 1800);
@@ -997,99 +893,86 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
 
-  /* ── MUSIC PLAYER — 2 LAGU ── */
-  /*
-  ╔═══════════════════════════════════════════════════════════════╗
-  ║  CARA GANTI LAGU DARI GITHUB:                                ║
-  ╠═══════════════════════════════════════════════════════════════╣
-  ║  1. Upload file .mp3 ke repo GitHub kamu                     ║
-  ║     (GitHub → repo → Add file → Upload files → Commit)       ║
-  ║                                                               ║
-  ║  2. Buka file .mp3 di GitHub → klik tombol "Raw"             ║
-  ║     Copy URL dari address bar                                 ║
-  ║                                                               ║
-  ║  3. Paste URL-nya di bagian 'src' di bawah ini               ║
-  ║     Ganti juga 'name' dengan judul lagu yang kamu mau        ║
-  ║                                                               ║
-  ║  Contoh URL raw GitHub yang benar:                           ║
-  ║    https://raw.githubusercontent.com/bilqis/surat/main/      ║
-  ║      lagu-satu.mp3                                            ║
-  ║    https://raw.githubusercontent.com/bilqis/surat/main/      ║
-  ║      lagu-dua.mp3                                             ║
-  ║                                                               ║
-  ║  PENTING: File harus .mp3, bukan .m4a atau format lain       ║
-  ╚═══════════════════════════════════════════════════════════════╝
-  */
-  const playlist = [
-    {
-      /* ▼ LAGU 1: ganti src dan name di bawah ini ▼ */
-      src:  'https://raw.githubusercontent.com/NIZAMPAP/qisstr/main/ya-allah-lindungi-bilqis/1865906985.mp3' ,
-      /* Contoh: 'https://raw.githubusercontent.com/bilqis/surat/main/satu-satunya.mp3' */
-      name: 'YA ALLAG  — LINDUNGI BILQIS'
-    },
-    {
-      /* ▼ LAGU 2: ganti src dan name di bawah ini ▼ */
-      src:  'https://raw.githubusercontent.com/NIZAMPAP/qisstr/main/Rex Orange County - Happiness (Official Audio) (320).mp3' ,
-      /* Contoh: 'https://raw.githubusercontent.com/bilqis/surat/main/kenangan-kita.mp3' */
-      name: 'HAPINES — HAPINES'
-    }
-  ];
-
+  /* ── MUSIC PLAYER — COMPLETE WORKING VERSION ── */
+  const audio = document.getElementById('bg-music');
+  const toggleBtn = document.getElementById('music-toggle');
+  const prevBtn = document.getElementById('music-prev');
+  const nextBtn = document.getElementById('music-next');
+  const label = document.getElementById('music-label');
+  const trackNum = document.getElementById('music-track-num');
+  const bars = document.getElementById('music-bars');
+  
   let currentTrack = 0;
   let playing = false;
-
-  const audio    = document.getElementById('bg-music');
-  const btn      = document.getElementById('music-toggle');
-  const bars     = document.getElementById('music-bars');
-  const label    = document.getElementById('music-label');
-  const trackNum = document.getElementById('music-track-num');
-  const prevBtn  = document.getElementById('music-prev');
-  const nextBtn  = document.getElementById('music-next');
-
-  function loadTrack(index, autoplay) {
-    currentTrack = index;
-    audio.src = playlist[currentTrack].src;
+  
+  // 🎵 DAFTAR LAGU - ganti dengan raw URL GitHub
+  const playlist = [
+    { src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', name: 'Melodi Untukmu I' },
+    { src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3', name: 'Melodi Untukmu II' }
+  ];
+  
+  function updateTrackDisplay() {
     label.textContent = playlist[currentTrack].name;
     trackNum.textContent = (currentTrack + 1) + ' / ' + playlist.length;
-    audio.load();
-    if (autoplay) {
-      audio.play().then(() => {
-        btn.textContent = '⏸'; bars.classList.remove('paused'); playing = true;
-      }).catch(() => {});
-    } else {
-      btn.textContent = '▶'; bars.classList.add('paused'); playing = false;
-    }
   }
-
-  function playPause() {
-    if (playing) {
-      audio.pause(); btn.textContent = '▶';
-      bars.classList.add('paused'); playing = false;
-    } else {
-      audio.play().catch(()=>{});
-      btn.textContent = '⏸'; bars.classList.remove('paused'); playing = true;
-    }
+  
+  function loadTrack(index) {
+    currentTrack = (index % playlist.length + playlist.length) % playlist.length;
+    audio.src = playlist[currentTrack].src;
+    updateTrackDisplay();
   }
-
-  btn.addEventListener('click', playPause);
-
-  prevBtn.addEventListener('click', () => {
-    const idx = (currentTrack - 1 + playlist.length) % playlist.length;
-    loadTrack(idx, playing);
+  
+  function playMusic() {
+    audio.play().catch(err => console.log('Play error:', err));
+    playing = true;
+    toggleBtn.textContent = '⏸';
+    bars.classList.remove('paused');
+  }
+  
+  function pauseMusic() {
+    audio.pause();
+    playing = false;
+    toggleBtn.textContent = '▶';
+    bars.classList.add('paused');
+  }
+  
+  // Event listeners
+  toggleBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (playing) pauseMusic();
+    else playMusic();
   });
-
-  nextBtn.addEventListener('click', () => {
-    const idx = (currentTrack + 1) % playlist.length;
-    loadTrack(idx, playing);
+  
+  prevBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    loadTrack(currentTrack - 1);
+    if (playing) playMusic();
   });
-
+  
+  nextBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    loadTrack(currentTrack + 1);
+    if (playing) playMusic();
+  });
+  
   audio.addEventListener('ended', () => {
-    const idx = (currentTrack + 1) % playlist.length;
-    loadTrack(idx, true);
+    loadTrack(currentTrack + 1);
+    playMusic();
   });
+  
+  // Initialize
+  loadTrack(0);
 
-  /* init: load track pertama tanpa autoplay */
-  loadTrack(0, false);
+  /* ── OPEN BUTTON ── */
+  document.getElementById('open-btn').addEventListener('click', () => {
+    const screen = document.getElementById('envelope-screen');
+    screen.classList.add('gone');
+    document.body.classList.remove('locked');
+    
+    // Auto-play musik saat surat dibuka
+    setTimeout(() => playMusic(), 500);
+  });
 </script>
+
 </body>
 </html>
