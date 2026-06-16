@@ -65,6 +65,7 @@
     .env-wrap {
       position:relative; display:flex; flex-direction:column;
       align-items:center; gap:2rem;
+      z-index:1;
     }
 
     /* envelope SVG-style */
@@ -140,6 +141,8 @@
     #open-btn {
       position:relative; background:none; border:none;
       cursor:pointer; outline:none; margin-top:.5rem;
+      z-index:10;
+      pointer-events:auto;
     }
     .open-btn-ring {
       position:absolute; inset:-6px; border-radius:50px;
@@ -349,7 +352,7 @@
       box-shadow:0 0 60px rgba(192,73,90,.3),0 0 120px rgba(192,73,90,.1);
       position:relative;
     }
-    .video-wrapper iframe{ width:100%; aspect-ratio:16/9; border:none; display:block; }
+    .video-wrapper video { width:100%; aspect-ratio:16/9; border:none; display:block; }
     .video-glow{
       position:absolute; inset:-2px; border-radius:18px;
       background:conic-gradient(from 0deg,var(--rose),var(--plum),var(--rose));
@@ -606,7 +609,7 @@
     </div>
     <div class="env-title">Ada sesuatu untukmu,<br><em style="color:var(--soft-gold)">Bilqis…</em></div>
     <div class="env-subtitle">— sebuah pesan dari hati —</div>
-    <button id="open-btn" aria-label="Buka surat">
+    <button id="open-btn">
       <div class="open-btn-ripple"></div>
       <div class="open-btn-ripple"></div>
       <div class="open-btn-inner">
@@ -662,10 +665,10 @@
   <h2 class="section-title reveal">Momen yang tak terlupakan</h2>
   <div class="video-wrapper reveal">
     <div class="video-glow"></div>
-    <iframe src="https://www.youtube.com/embed/450p7goxZqg?autoplay=0&rel=0&modestbranding=1"
-      title="Kenangan kita"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
+    <video controls>
+      <source src="https://raw.githubusercontent.com/NIZAMPAP/qisstr/main/video-kenangan.mp4" type="video/mp4">
+      Browser kamu tidak support video HTML5. Silakan upgrade browser atau gunakan browser yang lebih baru.
+    </video>
   </div>
 </section>
 
@@ -939,18 +942,21 @@
   // Event listeners
   toggleBtn.addEventListener('click', (e) => {
     e.preventDefault();
+    e.stopPropagation();
     if (playing) pauseMusic();
     else playMusic();
   });
   
   prevBtn.addEventListener('click', (e) => {
     e.preventDefault();
+    e.stopPropagation();
     loadTrack(currentTrack - 1);
     if (playing) playMusic();
   });
   
   nextBtn.addEventListener('click', (e) => {
     e.preventDefault();
+    e.stopPropagation();
     loadTrack(currentTrack + 1);
     if (playing) playMusic();
   });
@@ -963,8 +969,12 @@
   // Initialize
   loadTrack(0);
 
-  /* ── OPEN BUTTON ── */
-  document.getElementById('open-btn').addEventListener('click', () => {
+  /* ── OPEN BUTTON — FIXED & WORKING ── */
+  const openBtn = document.getElementById('open-btn');
+  openBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
     const screen = document.getElementById('envelope-screen');
     screen.classList.add('gone');
     document.body.classList.remove('locked');
@@ -972,6 +982,10 @@
     // Auto-play musik saat surat dibuka
     setTimeout(() => playMusic(), 500);
   });
+  
+  // Ensure button is clickable
+  openBtn.style.position = 'relative';
+  openBtn.style.zIndex = '10';
 </script>
 
 </body>
